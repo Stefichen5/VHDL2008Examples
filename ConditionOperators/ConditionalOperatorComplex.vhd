@@ -16,7 +16,7 @@ architecture Example1 of ConditionalOperatorComplex is
 begin
 	DoMagic : process (iA, iB, iC, iD) is
 	begin
-		--new: no need to write "= '1'"
+		--new: no need to write "= '1'"y
 		oA <= iA AND ((iB OR iC) XOR (NOT iD));
 	end process;
 
