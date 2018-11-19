@@ -12,14 +12,18 @@ entity SequentialSignalAssignment is
 	);
 end entity SequentialSignalAssignment;
 
-architecture MuxExample of SequentialSignalAssignment is
-	
+architecture MuxExample_New of SequentialSignalAssignment is	
 begin
 	Multiplex : process (iA, iB, iCtrl) is
 	begin
-		--Signal assignments in a process are only allowed in 08
-		--oRes <= iA when iCtrl else iB;
+		--Signal assignments within a process are only allowed in 08
+		oRes <= iA when iCtrl else iB;
 	end process;
-	
+end architecture MuxExample_New;
+
+architecture MuxExample_Old of SequentialSignalAssignment is	
+begin
+	--in older versions of VHDL, sequential signal assignments
+	--can not be within a process
 	oRes <= iA when iCtrl='1' else iB;
-end architecture MuxExample;
+end architecture MuxExample_Old;
