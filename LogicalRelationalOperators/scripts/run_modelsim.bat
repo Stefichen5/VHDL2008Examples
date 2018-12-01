@@ -1,20 +1,21 @@
+:: (C) Stefan Mayrhofer
+:: 01.12.2018
+
 @ECHO OFF
 
-::change to directory of the file
-pushd .
-cd %~dp0
+SET retval=0
 
 ECHO Starting VCOM
 
 vlib work
-vcom -2008 ../LogicalOperators.vhd
-vcom -2008 ../tbLogicalOperators.vhd
+for %%i in (%filenames%) do (
+	vcom -2008 %%i || CALL %Checkerror% "Error in VCOM analysis"
+)
 
 ECHO Starting simulation
 
-vsim -c -do modelsim.do tbLogicalOperators
+vsim -c -do scripts/modelsim.do %TBName% || CALL %Checkerror% "Error in VSIM"
 
-ECHO Modelsim simulation finished
+ECHO [92mModelsim simulation finished successfully[0m
 
-:: restore old working dir
-POPD
+:end

@@ -1,19 +1,19 @@
+:: (C) Stefan Mayrhofer
+:: 01.12.2018
+
 @ECHO OFF
 
-::change to directory of the file
-pushd .
-cd %~dp0
+SET retval=0
 
 ECHO Starting analysis
 
-ghdl -a --std=08 ../LogicalOperators.vhd
-ghdl -a --std=08 ../tbLogicalOperators.vhd
+for %%i in (%filenames%) do (
+	ghdl -a --std=08 %%i || CALL %Checkerror% "Error in GHDL analysis"
+)
 
 ECHO Starting elaboration and run
+ghdl --elab-run --std=08 %TBName% || CALL CALL %Checkerror% "Error in elaboration and run"
 
-ghdl --elab-run --std=08 tbLogicalOperators
+ECHO [92mGHDL simulation passed successfully[0m
 
-ECHO GHDL simulation finished
-
-:: restore old working dir
-popd
+:end
