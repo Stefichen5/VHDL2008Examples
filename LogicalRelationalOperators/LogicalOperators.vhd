@@ -1,5 +1,4 @@
 --Not supported by Quartus 18.1
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -20,6 +19,7 @@ begin
 	begin
 		--Old way of doing it
 		--We needed to create a for-loop and go through all elements
+		vAndResult := '1';
 		for i in iData'RANGE loop
 			vAndResult := vAndResult AND iData(i);
 		end loop;
@@ -40,15 +40,16 @@ end architecture AND_Modern;
 architecture OR_Classic of LogicalOperators is
 begin
 	ANDProcess : process(iData) is
-		variable vAndResult : std_ulogic := '0';
+		variable vOrResult : std_ulogic := '0';
 	begin
 		--Old way of doing it
 		--We needed to create a for-loop and go through all elements
+		vOrResult := '0';
 		for i in iData'RANGE loop
-			vAndResult := vAndResult OR iData(i);
+			vOrResult := vOrResult OR iData(i);
 		end loop;
 		
-		oResult <= vAndResult;
+		oResult <= vOrResult;
 	end process;
 		
 end architecture OR_Classic;
