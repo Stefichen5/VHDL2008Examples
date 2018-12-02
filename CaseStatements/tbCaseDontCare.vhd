@@ -16,6 +16,7 @@ begin
 		);
 		
 	stimul : process is
+		variable vTmp : std_ulogic_vector (3 downto 0) := (others=>'X');
 	begin
 		iData <= (others=>'0');
 		wait for 5 ns;
@@ -24,10 +25,12 @@ begin
 			iData <= std_ulogic_vector(to_unsigned(i,iData'LENGTH));
 			wait for 5 ns;
 			
-			if std_ulogic_vector(to_unsigned(i,iData'LENGTH)) = "-11-" then
-				assert oData = "00000000" report "iData must be 0" severity failure;		
+			vTmp := std_ulogic_vector(to_unsigned(i,iData'LENGTH));
+			
+			if vTmp(2 downto 1) /= "00" then
+				assert oData = "00000000" report "oData must be 0" severity failure;		
 			else
-				assert oData /= "00000000" report "iData must not be 0" severity failure;	
+				assert oData /= "00000000" report "oData must not be 0" severity failure;	
 			end if;
 		end loop;
 		

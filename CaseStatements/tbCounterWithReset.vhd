@@ -114,6 +114,8 @@ begin
 		for i in 0 to 5 loop
 			wait until iClk;
 		end loop;
+		
+		report "Testbench for CounterWithReset finished successfully." severity note;
 		stop;
 		wait;
 	end process;

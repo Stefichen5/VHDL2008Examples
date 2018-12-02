@@ -17,12 +17,14 @@ begin
 		--if not, we produce an error (vector=0 is taken as an error)
 		--if yes, then we give out bit-patterns
 		case? iData is
-			when "-1--" => oData <= (others=>'0');
-			--Vcom/Vlog: (vcom-1341) Matching choice value "-1--" duplicates prior choice value "--1-" at line 20.
-			--when "-1--" => oData <= (others=>'0');
+			when "-10-" => oData <= (others=>'0');
+			when "-01-" => oData <= (others=>'0');
+			when "-11-" => oData <= (others=>'0');
+				
 			when "0001" => oData <= "10101010";
 			when "1000" => oData <= "01010101";
 			when "0000" => oData <= "11001100";
+			when "1001" => oData <= "00110011";
 			when others => oData <= (others =>'X');
 		end case?;
 	end process;
