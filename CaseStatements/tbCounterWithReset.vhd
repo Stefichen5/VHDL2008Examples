@@ -116,7 +116,8 @@ begin
 		end loop;
 		
 		report "Testbench for CounterWithReset finished successfully." severity note;
-		stop;
+		finish;
+--		stop;
 		wait;
 	end process;
 
