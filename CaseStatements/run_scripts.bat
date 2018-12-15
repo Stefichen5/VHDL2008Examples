@@ -12,6 +12,9 @@ SET filenames=CounterWithReset.vhd tbCounterWithReset.vhd
 ::tbCaseDontCare
 SET TBNames=tbCounterWithReset
 
+::Add path to quartus lite shell executable
+SET quartusLitePath=%MY_QUARTUS_PATH%\quartus_sh.exe
+
 ::----------------------------------------------------------
 cls
 SET Checkerror=../Verification_Scripts/Checkerror.bat
