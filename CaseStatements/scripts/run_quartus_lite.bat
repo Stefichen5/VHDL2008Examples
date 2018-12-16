@@ -5,8 +5,8 @@
 
 SET retval=0
 
-for %%i in (%TBNames%) do (
-	%quartusLitePath% --flow compile %%i || CALL %Checkerror% "Error in quartus lite workflow"
+for %%i in (%TBDNames%) do (
+ 	%quartusLitePath% --flow compile quartus_lite\\%%i || CALL %Checkerror% "Error in quartus lite workflow"
 )
 
 :end
