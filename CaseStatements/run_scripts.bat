@@ -13,7 +13,9 @@ SET filenames=CounterWithReset.vhd tbCounterWithReset.vhd
 SET TBNames=tbCounterWithReset
 SET TBDNames=tbdCounterWithReset
 
-::Add path to quartus lite shell executable
+::Add path to executables
+SET GHDLPath=%MY_GHDL_PATH%\ghdl.exe
+SET ModelsimPath=%MY_MODELSIM_PATH%\
 SET quartusLitePath=%MY_QUARTUS_PATH%\quartus_sh.exe
 SET quartusProPath=%MY_QUARTUS_PRO_PATH%\quartus_sh.exe
 
