@@ -1,0 +1,6 @@
+*.cf
+*.rpt
+*db/
+*work/
+*transcript/
+*.summary
