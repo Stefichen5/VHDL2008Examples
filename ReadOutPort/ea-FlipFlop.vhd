@@ -13,8 +13,7 @@ entity FlipFlop is
 	);
 end entity FlipFlop;
 
-architecture RTL of FlipFlop is
-	
+architecture RTL_new of FlipFlop is
 begin
 	process (iClk, inRstAsync) is
 	begin
@@ -27,4 +26,20 @@ begin
 	
 	--prior versions of VHDL do not allow reading from the output-port
 	onQ <= NOT oQ;
-end architecture RTL;
+end architecture RTL_new;
+
+architecture RTL_old of FlipFlop is
+	signal D : std_ulogic;	
+begin
+	process (iClk, inRstAsync) is
+	begin
+		if(inRstAsync = '0') then
+			D <= '0';
+		elsif (rising_edge(iClk)) then
+			D <= iD;
+		end if;
+	end process;
+	
+	oQ <= D;
+	onQ <= NOT D;
+end architecture RTL_old;

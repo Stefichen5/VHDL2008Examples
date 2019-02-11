@@ -11,15 +11,26 @@ architecture Bhv of tbFlipFlop is
 	constant cClkTime : time := 5 ns;
 	
 	signal iClk, inRstAsync : std_ulogic := '0';
-	signal iD, oQ, onQ : std_ulogic;
+	signal iD, oQ_new, oQ_old, onQ_new, onQ_old : std_ulogic;
 begin
-	UUT: entity work.FlipFlop
+	-- VHDL 2008-Style
+	UUT_new: entity work.FlipFlop(RTL_new)
 		port map(
 			iClk       => iClk,
 			inRstAsync => inRstAsync,
 			iD         => iD,
-			oQ         => oQ,
-			onQ        => onQ
+			oQ         => oQ_new,
+			onQ        => onQ_new
+		);	
+		
+	-- pre-VHDL 2008
+	UUT_old: entity work.FlipFlop(RTL_new)
+		port map(
+			iClk       => iClk,
+			inRstAsync => inRstAsync,
+			iD         => iD,
+			oQ         => oQ_old,
+			onQ        => onQ_old
 		);	
 		
 	Stimul : process is
@@ -28,35 +39,35 @@ begin
 
 		wait for cClkTime;
 		
-		assert oQ = '0' report "Output ports have wrong values" severity failure;
-		assert oQ = (NOT onQ) report "Output ports have wrong values" severity failure;
+		assert (oQ_new OR oQ_old) = '0' report "Output ports have wrong values" severity failure;
+		assert (oQ_new = (NOT onQ_new)) AND (oQ_old = (NOT onQ_old)) report "Output ports have wrong values" severity failure;
 		
 		inRstAsync <= '1';
 		
 		wait for cClkTime;
 		
-		assert oQ = '0' report "Output ports have wrong values" severity failure;
-		assert oQ = (NOT onQ) report "Output ports have wrong values" severity failure;
+		assert (oQ_new OR oQ_old) = '0' report "Output ports have wrong values" severity failure;
+		assert (oQ_new = (NOT onQ_new)) AND (oQ_old = (NOT onQ_old)) report "Output ports have wrong values" severity failure;
 		
 		iD <= '1';
 		
-		wait until oQ'EVENT;
+		wait until oQ_old'EVENT;
 		wait for 0 ns; --we have to wait for 1 delta since the onQ gets it's value 1 delta after oQ
 		
-		assert oQ = '1' report "Output ports have wrong values" severity failure;
-		assert oQ = (NOT onQ) report "Output ports have wrong values" severity failure;
+		assert (oQ_new AND oQ_old) = '1' report "Output ports have wrong values" severity failure;
+		assert (oQ_new = (NOT onQ_new)) AND (oQ_old = (NOT onQ_old)) report "Output ports have wrong values" severity failure;
 		
 		wait for 5*cClkTime;
 		
-		assert oQ = '1' report "Output ports have wrong values" severity failure;
-		assert oQ = (NOT onQ) report "Output ports have wrong values" severity failure;
+		assert (oQ_new AND oQ_old) = '1' report "Output ports have wrong values" severity failure;
+		assert (oQ_new = (NOT onQ_new)) AND (oQ_old = (NOT onQ_old)) report "Output ports have wrong values" severity failure;
 		
 		iD <= '0';
-		wait until oQ'EVENT;
+		wait until oQ_old'EVENT;
 		wait for 0 ns; --we have to wait for 1 delta since the onQ gets it's value 1 delta after oQ
 		
-		assert oQ = '0' report "Output ports have wrong values" severity failure;
-		assert oQ = (NOT onQ) report "Output ports have wrong values" severity failure;
+		assert (oQ_new OR oQ_old) = '0' report "Output ports have wrong values" severity failure;
+		assert (oQ_new = (NOT onQ_new)) AND (oQ_old = (NOT onQ_old)) report "Output ports have wrong values" severity failure;
 		
 		report "Simulation finished" severity note;
 		
