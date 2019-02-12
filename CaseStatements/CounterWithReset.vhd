@@ -12,7 +12,7 @@ entity CounterWithReset is
 	);
 end entity CounterWithReset;
 
-architecture RTL of CounterWithReset is
+architecture RTL_new of CounterWithReset is
 	signal CountState, CountStateNext : std_ulogic_vector(oData'RANGE);
 	signal Ctrl : std_ulogic_vector(iCtrl'RANGE);
 begin
@@ -44,4 +44,39 @@ begin
 	end process;
 	
 	oData <= CountState;
-end architecture RTL;
+end architecture RTL_new;
+
+architecture RTL_old of CounterWithReset is
+	signal CountState, CountStateNext : std_ulogic_vector(oData'RANGE);
+	signal Ctrl : std_ulogic_vector(iCtrl'RANGE);
+begin
+		count : process (iClk, inRstAsync) is
+	begin
+		if inRstAsync = '0' then
+			CountState <= (others=>'0');
+			Ctrl <= (others => '0');
+		elsif rising_edge(iClk) then
+			CountState <= CountStateNext;
+			Ctrl <= iCtrl;
+		end if;
+	end process;
+	
+	counter : process(Ctrl, CountState) is
+	begin
+		CountStateNext <= CountState;
+
+	--this is one way of doing it Pre-2008. We first check the "activate-bit" and then do the rest in a case-statement
+	if(ctrl(ctrl'LEFT)='1') then
+		case ctrl(ctrl'LEFT-1  downto ctrl'RIGHT) is
+			when "00" => CountStateNext <= std_ulogic_vector(unsigned(CountState) + to_unsigned(1,CountState'LENGTH)); --count up
+			when "01" => CountStateNext <= std_ulogic_vector(unsigned(CountState) + to_unsigned(2,CountState'LENGTH));--count up 2
+			when "10" => CountStateNext <= std_ulogic_vector(unsigned(CountState) - to_unsigned(1,CountState'LENGTH));--count down
+			when "11" => CountStateNext <= std_ulogic_vector(unsigned(CountState) - to_unsigned(2,CountState'LENGTH));--count down 2
+			when others => CountStateNext <= (others=>'X');
+		end case;
+	end if;
+	
+	end process;
+	
+	oData <= CountState;	
+end architecture;
