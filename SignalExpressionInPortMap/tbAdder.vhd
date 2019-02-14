@@ -12,9 +12,10 @@ architecture Bhv of tbAdder is
 	
 	signal iA, iB : std_ulogic_vector (cWidth-1 downto 0) := (others =>'0');
 	signal iAReady, iBReady : std_ulogic := '0';
-	signal oRes : integer;
+	signal oRes : integer := 0;
+	signal oRes_orig : std_ulogic_vector(cWidth downto 0) := (others => '0');
 begin
-	UUT : entity work.InstanceOfAdder
+	UUT : entity work.InstanceOfAdder(RTL)
 		generic map(
 			gWidth => cWidth
 		)
@@ -23,8 +24,10 @@ begin
 			iB      => iB,
 			iAReady => iAReady,
 			iBReady => iBReady,
-			oRes    => oRes
+			oRes    => oRes_orig
 		);
+		
+	oRes <= to_integer(unsigned(oRes_orig));
 		
 	stimul : process
 	begin

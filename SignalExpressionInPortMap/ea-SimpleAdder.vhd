@@ -13,8 +13,7 @@ entity SimpleAdder is
 	);
 end entity SimpleAdder;
 
-architecture RTL of SimpleAdder is
-	
+architecture RTL of SimpleAdder is	
 begin
 	oRes <= iA + iB when iEN else 0;
 end architecture RTL;
