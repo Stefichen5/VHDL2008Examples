@@ -12,7 +12,7 @@ end entity tbExtendedGenerate;
 architecture Bhv of tbExtendedGenerate is
 	constant cWaitTime : time := 5 ns;
 	
-	signal iA, iB : std_ulogic;
+	signal iA, iB : std_ulogic := '0';
 	
 	signal ElseGenerateA, ElseGenerateB, ElseGenerateC, ElseGenerateD : std_ulogic;
 	signal CaseGenerateA, CaseGenerateB, CaseGenerateC, CaseGenerateD : std_ulogic;
@@ -52,22 +52,28 @@ begin
 	Checks : process is
 	begin
 		--we have to wait so the results can be correctly passed through
-		wait for 1 ps;
+		wait for 1 ns;
 		
-		assert (ElseGenerateA = CaseGenerateA) report "Result from generated Else differs from generated Case" severity failure;
-		assert (ElseGenerateB = CaseGenerateB) report "Result from generated Else differs from generated Case" severity failure;
-		assert (ElseGenerateC = CaseGenerateC) report "Result from generated Else differs from generated Case" severity failure;
-		assert (ElseGenerateD = CaseGenerateD) report "Result from generated Else differs from generated Case" severity failure;
-
-		assert ElseGenerateA = (iA AND iB) report "Unexpected result" severity failure;
-		assert ElseGenerateB = (iA OR iB) report "Unexpected result" severity failure;
-		assert ElseGenerateC = (iA NOR iB) report "Unexpected result" severity failure;
-		assert ElseGenerateD = (iA XOR iB) report "Unexpected result" severity failure;
-		
-		assert CaseGenerateA = (iA AND iB) report "Unexpected result" severity failure;
-		assert CaseGenerateB = (iA OR iB) report "Unexpected result" severity failure;
-		assert CaseGenerateC = (iA NOR iB) report "Unexpected result" severity failure;
-		assert CaseGenerateD = (iA XOR iB) report "Unexpected result" severity failure;
+		--should loop enough times for the testbench to finish
+		for i in integer'low to integer'high loop
+			assert (ElseGenerateA = CaseGenerateA) report "Result from generated Else differs from generated Case" severity failure;
+			assert (ElseGenerateB = CaseGenerateB) report "Result from generated Else differs from generated Case" severity failure;
+			assert (ElseGenerateC = CaseGenerateC) report "Result from generated Else differs from generated Case" severity failure;
+			assert (ElseGenerateD = CaseGenerateD) report "Result from generated Else differs from generated Case" severity failure;
+	
+			assert ElseGenerateA = (iA AND iB) report "Unexpected result" severity failure;
+			assert ElseGenerateB = (iA OR iB) report "Unexpected result" severity failure;
+			assert ElseGenerateC = (iA NOR iB) report "Unexpected result" severity failure;
+			assert ElseGenerateD = (iA XOR iB) report "Unexpected result" severity failure;
+			
+			assert CaseGenerateA = (iA AND iB) report "Unexpected result" severity failure;
+			assert CaseGenerateB = (iA OR iB) report "Unexpected result" severity failure;
+			assert CaseGenerateC = (iA NOR iB) report "Unexpected result" severity failure;
+			assert CaseGenerateD = (iA XOR iB) report "Unexpected result" severity failure;
+			
+			wait until iA'EVENT or iB'EVENT;
+			wait for 1 ns;
+		end loop;
 	end process;
 	
 	/*
