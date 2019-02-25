@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use std.env.all;
+
 entity tbConditionalOperatorComplex is
 end entity tbConditionalOperatorComplex;
 
@@ -34,5 +36,7 @@ begin
 		iD<='0';
 		
 		wait for 5 ns;
+		
+		finish;
 	end process;
 end architecture RTL;

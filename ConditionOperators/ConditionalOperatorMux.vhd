@@ -30,8 +30,15 @@ architecture Multiplexer_New of ConditionalOperatorMux is
 begin
 	Multiplex : process (iA, iB, iCtrl) is
 	begin
-		-- ??-operator will be applied implicitly for better readability
---		if ?? iCtrl then
+	-- ??-operator will be applied implicitly for better readability
+	/*	
+ 		if ?? iCtrl then
+			oRes <= iA;
+		else
+			oRes <= iB;
+		end if;
+	 */
+	 		
 		if iCtrl then
 			oRes <= iA;
 		else

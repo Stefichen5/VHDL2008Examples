@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use std.env.all;
+
 entity tbConditionalOperatorMux is
 end entity tbConditionalOperatorMux;
 
@@ -50,7 +52,7 @@ begin
 		assert oResOldStyle = oResNewStyle report "Old and new Mux have produced different results" severity failure;
 		assert oResOldStyle = iA report "Output should be iA, but is not" severity failure;
 
-		wait;
+		finish;
 	end process;
 	
 end architecture Bhv;
