@@ -4,3 +4,11 @@
 *work/
 *transcript/
 *.summary
+*.sof
+*.sld
+*.done
+*.smsg
+*.jdi
+*.pin
+*.qws
+*.lnk
