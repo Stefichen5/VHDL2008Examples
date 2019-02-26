@@ -10,7 +10,7 @@ entity tbdLogicalOperators is
 end entity tbdLogicalOperators;
 
 architecture RTL of tbdLogicalOperators is
-	constant cWidth : natural := 9;
+	constant cWidth : natural := 10;
 begin
 	uut_AND_Classic: entity work.LogicalOperators(AND_Classic)
 	generic map (gWidth => cWidth)
