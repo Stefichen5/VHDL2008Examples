@@ -12,7 +12,10 @@ for %%i in (%filenames%) do (
 )
 
 ECHO Starting elaboration and run
-ghdl --elab-run --std=08 %TBName% || CALL CALL %Checkerror% "Error in elaboration and run"
+
+for %%i in (%TBNames%) do (
+	ghdl --elab-run --std=08 %%i || CALL %Checkerror% "Error in elaboration and run of TB %%i"
+)
 
 ECHO [92mGHDL simulation passed successfully[0m
 

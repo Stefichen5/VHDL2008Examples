@@ -1,14 +1,21 @@
 :: (C) Stefan Mayrhofer
-:: V1: 01.12.2018
+:: V1: 26.02.2019
 
 @ECHO OFF
 
 :: Add VHDL filenames here
 SET filenames=LogicalOperators.vhd tbLogicalOperators.vhd
 
-::Add name of the testbench here
-SET TBName=tbLogicalOperators
+::Add names of the testbenches here
+SET TBNames=tbLogicalOperators
+SET TBDNames=tbdLogicalOperators
 
+::Add path to quartus lite shell executable
+SET quartusLitePath=%MY_QUARTUS_PATH%\quartus_sh.exe
+SET quartusProPath=%MY_QUARTUS_PRO_PATH%\quartus_sh.exe
+
+::Set device families for quartus synthesis
+SET quartus_lite_family=CycloneV
 ::----------------------------------------------------------
 cls
 SET Checkerror=../Verification_Scripts/Checkerror.bat

@@ -14,7 +14,10 @@ for %%i in (%filenames%) do (
 
 ECHO Starting simulation
 
-vsim -c -do scripts/modelsim.do %TBName% || CALL %Checkerror% "Error in VSIM"
+for %%i in (%TBNames%) do (
+::	vsim -c -do scripts/modelsim.do %%i || CALL %Checkerror% "Error in VSIM for TB %%i"
+	vsim -c -do scripts/modelsim.do %%i || ECHO %ErrorLevel%
+)
 
 ECHO [92mModelsim simulation finished successfully[0m
 
