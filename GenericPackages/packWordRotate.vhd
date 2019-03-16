@@ -6,16 +6,17 @@ package packWordRotate is
 	generic (gWordLen, gNrWords : natural);
 	
 	constant cWidth : natural := (gWordLen * gNrWords);
+	
+	function RotateLeft(signal InVect : std_ulogic_vector(cWidth-1 downto 0)) return std_ulogic_vector;
+end package packWordRotate;
+
+package body packWordRotate is
 	/*
 	 * This function rotates an array word-wise
 	 * For example:
 	 * In: AA_BB_CC_DD
 	 * Out: BB_CC_DD_AA
 	 */	
-	function RotateLeft(signal InVect : std_ulogic_vector(cWidth-1 downto 0)) return std_ulogic_vector;
-end package packWordRotate;
-
-package body packWordRotate is
 	function RotateLeft(signal InVect : std_ulogic_vector(cWidth-1 downto 0)) return std_ulogic_vector is
 		variable vRetVect : std_ulogic_vector(InVect'RANGE);
 	begin
