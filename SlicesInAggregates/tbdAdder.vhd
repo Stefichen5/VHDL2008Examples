@@ -12,7 +12,7 @@ end entity tbdAdder;
 architecture RTL of tbdAdder is
 	
 begin
-	UUT : entity work.Adder
+	UUT : entity work.Adder(RTL)
 		generic map(
 			gWidth => 5
 		)

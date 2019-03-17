@@ -17,7 +17,16 @@ entity Adder is
 end entity Adder;
 
 architecture RTL of Adder is
-	
 begin
-	(oCarry, oRes) <= std_ulogic_vector(unsigned('0' & iA) + unsigned('0' & iB));
+	(oCarry, oRes) <= std_ulogic_vector(unsigned('0' & iA) + unsigned('0' & iB));	
 end architecture RTL;
+
+-- PRE-VHDL-2008
+architecture RTL_old of Adder is
+	signal result : std_ulogic_vector(gWidth downto 0);
+begin
+	result <= std_ulogic_vector(unsigned('0' & iA) + unsigned('0' & iB));
+	
+	oRes <= result (result'LEFT-1 downto 0);
+	oCarry <= result(result'LEFT);
+end architecture;
