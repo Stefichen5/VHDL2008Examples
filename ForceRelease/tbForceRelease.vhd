@@ -2,6 +2,8 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
+use std.env.all;
+
 entity tbForceRelease is
 end entity tbForceRelease;
 
@@ -39,7 +41,7 @@ begin
 		
 		assert oA=iA report "oA has to be the same as iA" severity failure;
 		assert oB=iA report "oB has to be the same as iA" severity failure;
-		
+
 		--
 		internalChangeOutput <= force '1';
 		internalNewOutput <= force (others=>'1');
@@ -49,7 +51,15 @@ begin
 		
 		assert oA/=iA report "oA is no longer the same as iA" severity failure;
 		assert oB/=iA report "oB is no longer the same as iA" severity failure;
-		wait;
+		
+		ForceOutput <= release;
+		InternalChangeOutput <= release;
+		wait for 5 ns;
+		
+		assert oA=iA report "oA has to be the same as iA" severity failure;
+		assert oB=iA report "oB has to be the same as iA" severity failure;
+		
+		finish;
 	end process;
 
 end architecture Bhv;
