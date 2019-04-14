@@ -12,3 +12,8 @@
 *.pin
 *.qws
 *.lnk
+*.xml
+*.settings
+transcript
+*.txt
+*.wlf
