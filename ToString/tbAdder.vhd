@@ -49,7 +49,11 @@ begin
 		report to_string(ulogicbit);
 		report to_string(ulogicvect);
 		report to_hstring(ulogicvect);
-		report to_ostring(ulogicvect);		
+		report to_ostring(ulogicvect);
+		
+		--the following statements are illegal because the types are not bit-based
+		--report to_hstring(ValueA); -- custom type
+		--report to_hstring(oRes);   -- natural type
 		wait;
 	end process;
 end architecture Bhv;
