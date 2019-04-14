@@ -11,7 +11,6 @@ entity Adder is
 end entity Adder;
 
 architecture RTL of Adder is
-	
 begin
 	process (all) is
 	begin
