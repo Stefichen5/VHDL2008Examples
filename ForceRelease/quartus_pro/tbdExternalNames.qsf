@@ -18,14 +18,14 @@
 #
 # Quartus Prime
 # Version 18.1.0 Build 222 09/21/2018 SJ Pro Edition
-# Date created = 12:46:18  February 26, 2019
+# Date created = 09:36:00  February 09, 2019
 #
 # -------------------------------------------------------------------------- #
 #
 # Notes:
 #
 # 1) The default values for assignments are stored in the file:
-#		tbdLogicalOperators_assignment_defaults.qdf
+#		tbdExternalNames_assignment_defaults.qdf
 #    If this file doesn't exist, see file:
 #		assignment_defaults.qdf
 #
@@ -36,18 +36,7 @@
 # -------------------------------------------------------------------------- #
 
 set_global_assignment -name FAMILY "Cyclone 10 GX"
-set_global_assignment -name TOP_LEVEL_ENTITY tbdLogicalOperators
+set_global_assignment -name TOP_LEVEL_ENTITY tbdExternalNames
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 18.1.0
-set_global_assignment -name PROJECT_CREATION_TIME_DATE "12:46:18  FEBRUARY 26, 2019"
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "09:36:00  FEBRUARY 09, 2019"
 set_global_assignment -name LAST_QUARTUS_VERSION "18.1.0 Pro Edition"
-set_global_assignment -name DEVICE 10CX220YF780I5G
-set_global_assignment -name VHDL_FILE ../tbdLogicalOperators.vhd
-set_global_assignment -name VHDL_FILE ../LogicalOperators.vhd
-set_global_assignment -name MIN_CORE_JUNCTION_TEMP "-40"
-set_global_assignment -name MAX_CORE_JUNCTION_TEMP 100
-set_global_assignment -name POWER_AUTO_COMPUTE_TJ ON
-set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
-set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VHDL_INPUT_VERSION VHDL_2008
-set_global_assignment -name VHDL_SHOW_LMF_MAPPING_MESSAGES OFF
-set_instance_assignment -name PARTITION_COLOUR 4285574399 -to tbdLogicalOperators -entity tbdLogicalOperators
