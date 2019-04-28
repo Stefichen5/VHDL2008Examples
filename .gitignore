@@ -18,3 +18,9 @@ transcript
 *.txt
 *.wlf
 *.opt
+*.log
+*.jou
+*.sim*
+*.runs*
+*.cache*
+*.hw*
