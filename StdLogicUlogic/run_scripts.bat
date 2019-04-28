@@ -9,6 +9,7 @@ SET filenames=ea-LogicUlogic.vhd tbLogicUlogic.vhd
 ::Add names of the testbenches here
 ::tbCaseDontCare
 SET TBNames=tbLogicUlogic
+SET TBDNames=tbdLogicUlogic
 
 ::Add path to quartus lite shell executable
 SET quartusLitePath=%MY_QUARTUS_PATH%\quartus_sh.exe
