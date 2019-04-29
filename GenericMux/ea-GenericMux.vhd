@@ -31,5 +31,5 @@ begin
 	end process;
 	*/
 	
-	oRes <= iB when iSel else iA; 
+	oRes <= iB when iSel='1' else iA; 
 end architecture RTL;
