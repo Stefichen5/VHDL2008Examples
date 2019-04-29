@@ -1,0 +1,2 @@
+open_project vivado/SequentialSignalAssignments.xpr
+catch {launch_simulation}

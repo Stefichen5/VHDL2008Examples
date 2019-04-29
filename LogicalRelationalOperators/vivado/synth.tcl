@@ -1,0 +1,2 @@
+open_project vivado/LogicalRelationalOperators.xpr
+catch {synth_design}

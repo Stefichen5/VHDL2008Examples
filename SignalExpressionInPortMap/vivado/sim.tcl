@@ -1,0 +1,2 @@
+open_project vivado/SignalExpressionInPortMap.xpr
+catch {launch_simulation}
