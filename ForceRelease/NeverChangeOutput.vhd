@@ -16,7 +16,7 @@ architecture InternalSignals of NeverChangeOutput is
 begin
 	SignalToOutput : process (all) is
 	begin
-		if ChangeOutput then
+		if ChangeOutput='1' then
 			oA <= NewOutput;
 		else
 			oA <= iA;
