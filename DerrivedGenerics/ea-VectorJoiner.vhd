@@ -17,5 +17,5 @@ end entity VectorJoiner;
 
 architecture RTL of VectorJoiner is	
 begin
-	oAB <= iA & iB when inReset else cResetVal;
+	oAB <= iA & iB when inReset='1' else cResetVal;
 end architecture RTL;
