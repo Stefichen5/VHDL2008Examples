@@ -24,3 +24,4 @@ transcript
 *.runs*
 *.cache*
 *.hw*
+*.str
