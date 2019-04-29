@@ -50,6 +50,10 @@ begin
 		
 		wait for cWaitTime;
 		
+		--be careful when using vectors of a different length
+		--here, 0b101 (5) will be returned and not 0b100100 (36)
+		report to_string(maximum(bit_vector'("101"), bit_vector'("100100")));
+		
 		finish;
 	end process;
 
