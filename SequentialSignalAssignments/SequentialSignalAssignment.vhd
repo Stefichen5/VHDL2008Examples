@@ -17,7 +17,7 @@ begin
 	--Signal assignments within a process are only allowed in 08
 	Multiplex : process (iA, iB, iCtrl) is
 	begin
-		oRes <= iA when iCtrl else iB;
+		oRes <= iA when iCtrl='1' else iB;
 	end process;
 end architecture MuxExample_New;
 

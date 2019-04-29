@@ -15,5 +15,5 @@ end entity SimpleAdder;
 
 architecture RTL of SimpleAdder is	
 begin
-	oRes <= iA + iB when iEN else 0;
+	oRes <= iA + iB when iEN='1' else 0;
 end architecture RTL;
