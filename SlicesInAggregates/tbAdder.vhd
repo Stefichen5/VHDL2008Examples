@@ -49,7 +49,7 @@ begin
 		assert Result = SideA + SideB report "Wrong adder result" severity failure;
 		assert Result = ResultOld report "old and new implementation differ" severity failure;
 		
-		assert NOT oCarry report "Wrong carry" severity failure;
+		assert oCarry='0' report "Wrong carry" severity failure;
 		assert oCarry = oCarryOld report "old and new implementation differ" severity failure;
 		
 		SideA <= 255;
@@ -60,7 +60,7 @@ begin
 		assert Result = 0 report "Wrong adder result" severity failure;
 		assert Result = ResultOld report "old and new implementation differ" severity failure;
 		
-		assert oCarry report "Wrong carry" severity failure;
+		assert oCarry='1' report "Wrong carry" severity failure;
 		assert oCarry = oCarryOld report "old and new implementation differ" severity failure;
 		
 		finish;

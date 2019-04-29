@@ -3,7 +3,7 @@ use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
 entity MinMaxFinder is
-	generic(gWidth : natural := 7);
+	generic(gWidth : natural := 8);
 	port(
 		iA : in std_ulogic_vector(gWidth-1 downto 0);
 		iB : in std_ulogic_vector(gWidth-1 downto 0);
