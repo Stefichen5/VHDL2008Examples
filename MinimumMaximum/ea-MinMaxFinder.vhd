@@ -13,16 +13,10 @@ end entity MinMaxFinder;
 
 architecture Min of MinMaxFinder is
 begin
-	process (all) is
-	begin
-		oRes <= minimum(iA,iB);
-	end process;
+	oRes <= minimum(iA,iB);
 end architecture Min;
 
 architecture Max of MinMaxFinder is
 begin
-	process (all) is
-	begin
-		oRes <= maximum(iA,iB);
-	end process;
+	oRes <= maximum(iA,iB);
 end architecture Max;
