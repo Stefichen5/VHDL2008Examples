@@ -1,0 +1,2 @@
+open_project vivado/UnconstrainedSubtypes.xpr
+catch {launch_simulation}
