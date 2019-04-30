@@ -27,7 +27,7 @@ cd %~dp0
 
 :: run all simulation scripts
 for %%i in (../Simulation_Scripts/*.bat) do (
-	echo hallo %%i
+	
 	CALL ../Simulation_Scripts/%%i
 	SET /A error=error+retval
 	

@@ -25,3 +25,4 @@ transcript
 *.cache*
 *.hw*
 *.str
+*.Xil*

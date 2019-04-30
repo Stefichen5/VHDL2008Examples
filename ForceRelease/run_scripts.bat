@@ -4,11 +4,11 @@
 @ECHO OFF
 
 :: Add VHDL filenames here
-SET filenames=NeverChangeOutput.vhd FlipFlop.vhd tbFFSynchronizer.vhd tbForceRelease.vhd
+SET filenames=FlipFlop.vhd tbForceRelease.vhd
 
 ::Add names of the testbenches here
 ::tbCaseDontCare
-SET TBNames=tbFFSynchronizer tbForceRelease
+SET TBNames=tbForceRelease
 SET TBDNames=tbdExternalNames
 
 ::Add path to quartus lite shell executable
@@ -25,6 +25,26 @@ SET error=0
 ::change to directory of the file
 pushd .
 cd %~dp0
+
+:: run all simulation scripts
+for %%i in (../Simulation_Scripts/*.bat) do (
+	
+	CALL ../Simulation_Scripts/%%i
+	SET /A error=error+retval
+	
+	echo.
+	echo.
+	echo.
+)
+:: run all synthesis scripts
+for %%i in (../Synthesis_Scripts/*.bat) do (
+	CALL ../Synthesis_Scripts/%%i
+	SET /A error=error+retval
+	
+	echo.
+	echo.
+	echo.
+)
 
 :: run all batch scripts in the scripts-subdir
 for %%i in (scripts/*.bat) do (
