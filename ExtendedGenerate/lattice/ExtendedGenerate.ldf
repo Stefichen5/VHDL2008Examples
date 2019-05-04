@@ -10,13 +10,13 @@
             <Options/>
         </Source>
         <Source name="../EntitiesToGenerate.vhd" type="VHDL" type_short="VHDL">
-            <Options top_module="EntityToGenerate"/>
+            <Options/>
         </Source>
         <Source name="../packGenerateType.vhd" type="VHDL" type_short="VHDL">
             <Options/>
         </Source>
         <Source name="../tbdExtendedGenerate.vhd" type="VHDL" type_short="VHDL">
-            <Options/>
+            <Options top_module="tbdExtendedGenerate"/>
         </Source>
         <Source name="ExtendedGenerate.lpf" type="Logic Preference" type_short="LPF">
             <Options/>
