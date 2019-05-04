@@ -14,7 +14,6 @@ entity FunctionApplier is
 end entity FunctionApplier;
 
 architecture RTL of FunctionApplier is
-	
 begin
 	oData <= my_generic_function(iDataA, iDataB);
 end architecture RTL;
