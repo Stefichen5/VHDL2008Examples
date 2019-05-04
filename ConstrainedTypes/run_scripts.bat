@@ -7,7 +7,6 @@
 SET filenames=ea-UnconstrainedMatrix.vhd tbUnconstrainedMatrix.vhd
 
 ::Add names of the testbenches here
-::tbCaseDontCare
 SET TBNames=tbUnconstrainedMatrix
 SET TBDNames=tbdUnconstrainedMatrix
 
