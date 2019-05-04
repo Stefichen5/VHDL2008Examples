@@ -26,3 +26,15 @@ transcript
 *.hw*
 *.str
 *.Xil*
+*.ini
+*.build_*
+*.vdbs*
+*.arearep
+*.lsedata
+*.ngd
+*.synproj
+*.html
+*.twr
+*.v
+*xxx*
+*.dir

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="MinimumMaximum" device="LCMXO2-1200HC-5TG144C" default_implementation="MinimumMaximum">
+    <Options/>
+    <Implementation title="MinimumMaximum" dir="MinimumMaximum" description="MinimumMaximum" synthesis="lse" default_strategy="Strategy1">
+        <Options def_top="tbdMinMax"/>
+        <Source name="../ea-MinMaxFinder.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="../tbdMinMax.vhd" type="VHDL" type_short="VHDL">
+            <Options top_module="tbdMinMax"/>
+        </Source>
+        <Source name="MinimumMaximum.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="MinimumMaximum1.sty"/>
+</BaliProject>

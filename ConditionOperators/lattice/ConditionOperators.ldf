@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BaliProject version="3.2" title="ConditionOperators" device="LCMXO2-1200HC-5TG144C" default_implementation="ConditionOperators">
+    <Options/>
+    <Implementation title="ConditionOperators" dir="ConditionOperators" description="ConditionOperators" synthesis="lse" default_strategy="Strategy1">
+        <Options def_top="tbdConditionalOperator"/>
+        <Source name="../ConditionalOperatorMux.vhd" type="VHDL" type_short="VHDL">
+            <Options/>
+        </Source>
+        <Source name="../tbdConditionalOperator.vhd" type="VHDL" type_short="VHDL">
+            <Options top_module="tbdConditionalOperator"/>
+        </Source>
+        <Source name="ConditionOperators.lpf" type="Logic Preference" type_short="LPF">
+            <Options/>
+        </Source>
+    </Implementation>
+    <Strategy name="Strategy1" file="ConditionOperators1.sty"/>
+</BaliProject>
