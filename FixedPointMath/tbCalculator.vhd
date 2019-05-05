@@ -34,9 +34,13 @@ begin
 	
 	Stimul_fixed : process is
 	begin
+		--------------------------------------------------
+		--Test fix
+		--------------------------------------------------
+		wait until oRes_fix = 0;
+		
 		iA_fix <= "0000110" after cWaitTime;
 		iB_fix <= "0000110" after cWaitTime;
-		wait until oRes_fix'EVENT;
 		wait until oRes_fix'EVENT;
 		
 		assert oRes_fix = 3 severity failure;
@@ -45,15 +49,27 @@ begin
 		wait until oRes_fix'EVENT;
 		assert oRes_fix = 1.5 severity failure;
 		
+		--------------------------------------------------
+		--Test float
+		--------------------------------------------------
+		iA_float <= "0000110" after cWaitTime;
+		iB_float <= "0000110" after cWaitTime;
+		wait until oRes_float'EVENT;
+		
+		assert oRes_float = 3 severity failure;
+		
+		iA_float <= "0000000";
+		wait until oRes_float'EVENT;
+		
+		assert oRes_float = 1.5 severity failure;
+		
+		
+		--------------------------------------------------
+		--done
+		--------------------------------------------------
 		report "testbench finished" severity note;
 		
 		finish;
-	end process;
-	
-	Stimul_float : process is
-	begin
-		
-		wait;
 	end process;
 
 end architecture Bhv;
