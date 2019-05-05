@@ -15,8 +15,9 @@ architecture Bhv of tbCalculator is
 	constant cLow : integer := -2;
 	
 	signal iA_fix, iB_Fix : sfixed(cHigh downto cLow) := "0000000";
-	signal oRes_fix : sfixed(cHigh+1 downto cLow) := "00000000";
-	signal iA_float, iB_float, oRes_float : float(cHigh downto cLow) := "0000000";
+	signal oRes_fix : sfixed(cHigh downto cLow) := "0000000";
+	signal iA_float, iB_float, oRes_float : float(5 downto -10);
+	
 begin
 	UUT_fixed : entity work.FixedPointCalculator
 		port map(
@@ -33,7 +34,11 @@ begin
 		);
 	
 	Stimul_fixed : process is
+		variable  valueA: ufixed(4 downto -3) := "01000100";
+		variable valueB: ufixed(3 downto -4) := "00000000";
 	begin
+		iA_float <= to_float(0, iA_float);
+		iB_float <= to_float(0, iB_float);
 		--------------------------------------------------
 		--Test fix
 		--------------------------------------------------
@@ -49,21 +54,46 @@ begin
 		wait until oRes_fix'EVENT;
 		assert oRes_fix = 1.5 severity failure;
 		
+		-- convert to sfixed (ufixed is also possible)
+		iA_fix <= to_sfixed(1.22, iA_fix);
+		iB_fix <= to_sfixed(2.75, cHigh, cLow);
+		
+		report "fixed point test finished" severity note;
 		--------------------------------------------------
 		--Test float
 		--------------------------------------------------
-		iA_float <= "0000110" after cWaitTime;
-		iB_float <= "0000110" after cWaitTime;
+		iA_float <= to_float(1.5, iA_float) after cWaitTime;
+		iB_float <= to_float(1.5, iB_float) after cWaitTime;
 		wait until oRes_float'EVENT;
 		
 		assert oRes_float = 3 severity failure;
 		
-		iA_float <= "0000000";
+		iA_float <= to_float(0, iA_float) after cWaitTime;
+		iB_float <= "1010101010101010" after cWaitTime;
+		iB_float <= to_float(1/5, iB_float) after cWaitTime;
 		wait until oRes_float'EVENT;
 		
-		assert oRes_float = 1.5 severity failure;
+		assert oRes_float = 1/5 severity failure;
 		
+		/* Illegal:
+			Res <= A + "1010101010"; 
+		*  Legal:
+			Res <= A + 1;
+			Res <= A + 1.23;
+		* */
 		
+		--------------------------------------------------
+		--test other things
+		--------------------------------------------------
+		report "valueA is: " & to_string(valueA);
+		valueB := valueA;
+		report "without resizing, valueB is: " & to_string(valueB);
+		valueB := resize(valueA, valueB);
+		report "After resizing, valueB is: " & to_string(valueB);
+
+		assert valueA = valueB severity failure;
+		
+		wait for cWaitTime;
 		--------------------------------------------------
 		--done
 		--------------------------------------------------

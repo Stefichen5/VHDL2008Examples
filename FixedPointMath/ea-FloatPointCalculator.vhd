@@ -5,9 +5,9 @@ use ieee.float_pkg.all;
 
 entity FloatPointCalculator is
 	port(
-		iA : in float(4 downto -2);
-		iB : in float(4 downto -2);
-		oRes: out float(4 downto -2)
+		iA : in float(5 downto -10);
+		iB : in float(5 downto -10);
+		oRes: out float(5 downto -10)
 	);
 end entity FloatPointCalculator;
 
