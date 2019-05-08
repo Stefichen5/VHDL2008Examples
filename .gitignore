@@ -38,3 +38,9 @@ transcript
 *.v
 *xxx*
 *.dir
+*.dmp
+*_log
+._Real_._Math_.vhd
+*/lattice/*/*.lpf
+FixedPointMath/wlftwf37im
+FixedPointMath/wlft0e6mr1
