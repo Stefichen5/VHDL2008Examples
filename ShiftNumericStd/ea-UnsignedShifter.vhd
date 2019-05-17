@@ -11,7 +11,6 @@ entity UnsignedShifter is
 end entity UnsignedShifter;
 
 architecture RTL of UnsignedShifter is
-	
 begin
 	oShiftLeft <= iA sla 1;
 	oShiftRight <= iA sra 1;
