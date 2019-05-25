@@ -33,7 +33,7 @@ begin
 	end process;
 	
 	
-	write: process (all) is
+	write: process (iWrEn, iAddr, RegisterSet) is
 	begin
 		RegisterSetNext <= RegisterSet;
 		
