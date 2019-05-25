@@ -17,6 +17,8 @@ architecture Bhv of tbAdder is
 	signal CustomSignal: aCustomType := ValueA;
 	signal ulogicbit : std_ulogic := '1';
 	signal ulogicvect : std_ulogic_vector(7 downto 0) := "11111111";
+	signal ATimeValue: time := 100 ns;
+
 begin
 	UUT: entity work.Adder
 		port map(
@@ -48,6 +50,8 @@ begin
 		report to_string(CustomSignal);
 		report to_string(ulogicbit);
 		report to_string(ulogicvect);
+		report to_string(ATimeValue);
+		report to_string(ATimeValue, ns);
 		report to_hstring(ulogicvect);
 		report to_ostring(ulogicvect);
 		
