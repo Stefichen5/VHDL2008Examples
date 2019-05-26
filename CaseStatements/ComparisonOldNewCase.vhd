@@ -14,24 +14,24 @@ begin
 		wait;
 	end process;
 
-	regular_case: process is
-	begin
-		case my_signal is
-			when '-' => report "regular case: don't care detected";
-			when others => report "regular case: other value detected";
-		end case;
+regular_case: process is
+begin
+	case my_signal is
+		when '-' => report "regular case: don't care detected";
+		when others => report "regular case: other value detected";
+	end case;
 
-		wait until my_signal'EVENT;
-	end process;
+	wait until my_signal'EVENT;
+end process;
 
-	matching_case: process is
-	begin
-		case? my_signal is
-			when '-' => report "matching case: don't care detected";
-			when others => report "matching case: other value detected";
-		end case?;
+matching_case: process is
+begin
+	case? my_signal is
+		when '-' => report "matching case: don't care detected";
+		when others => report "matching case: other value detected";
+	end case?;
 
-		wait until my_signal'EVENT;
-	end process;
+	wait until my_signal'EVENT;
+end process;
 
 end architecture Bhv;
