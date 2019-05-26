@@ -14,7 +14,7 @@ architecture Bhv of tbCalculator is
 	constant cHigh : natural := 4;
 	constant cLow : integer := -2;
 	
-	signal iA_fix, iB_Fix : sfixed(cHigh downto cLow) := "0000000";
+	signal iA_fix, iB_Fix : sfixed(cHigh downto cLow) := "1111100";
 	signal oRes_fix : sfixed(cHigh downto cLow) := "0000000";
 	signal iA_float, iB_float, oRes_float : float(5 downto -10);
 	
