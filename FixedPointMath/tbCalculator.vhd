@@ -34,7 +34,7 @@ begin
 		);
 	
 	Stimul_fixed : process is
-		variable  valueA: ufixed(4 downto -3) := "01000100";
+		variable valueA: ufixed(4 downto -3) := "01000100";
 		variable valueB: ufixed(3 downto -4) := "00000000";
 	begin
 		iA_float <= to_float(0, iA_float);
