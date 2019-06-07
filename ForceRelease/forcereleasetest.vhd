@@ -22,6 +22,8 @@ begin
 	begin
 		wait for 6 ns;
 		mySignal <= force 'X';
+		wait for 1 ns;
+		mySignal <= release;
 		wait;
 	end process;
 
